@@ -1,77 +1,88 @@
 class ExcursionsAPI {
     constructor() {
-        this.excursionsApiUrl = 'http://localhost:3000/excursions'
-        this.ordersApiUrl = 'http://localhost:3000/orders'
+        // URL do naszego APi
+        this.baseURL = 'http://localhost:3000';
     }
 
-    getExcursions() {
-        return fetch(this.excursionsApiUrl)
-            .then(response => {
-                if (response.ok) { return response.json() }
-                return Promise.reject(new Error(`Wystapił błąd podczas pobierania wycieczki! Status: ${response.status}`))
-            })
-            .catch(err => console.error('błąd pobierania wycieczki', err))
-    }
-
-    addExcursion(excursionData) {
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(excursionData),
-            headers: { 'Content-Type': 'application/json' },
+    // pobiera liste wycieczek
+    async getExcursions() {
+        try {
+            const response = await fetch(`${this.baseURL}/excursions`)
+            if (!response.ok) {
+                throw new Error(`Error! Status: ${response.status}`)
+            }
+            return await response.json()
+        } catch (error) {
+            console.error('Błąd pobierania wycieczek!', error);
+            throw new Error(`Błąd pobierania wycieczek!`)
         }
-        return fetch(this.excursionsApiUrl, options)
-            .then(response => {
-                if (response.ok) { return response.json() }
-                return Promise.reject(new Error(`Wystapił błąd podczas dodawania wycieczki! Status: ${response.status}`))
-            })
-            .catch(err => console.error('błąd dodawania wycieczki', err))
     }
 
-    removeExcursion(excursionId) {
-        const options = {
-            method: 'DELETE',
+    // dodaje wycieczke do serwera
+    async addExcursions(excursionData) {
+        try {
+            const response = await fetch(`${this.baseURL}/excursions`, {
+                method: 'POST',
+                body: JSON.stringify(excursionData),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            if (!response.ok) throw new Error('Problem z dodaniem wycieczki')
+            return await response.json()
+        } catch (err) {
+            console.error('Błąd ExcursionsAPI.addExcursion:', err);
+            throw err
         }
-        return fetch(`${this.excursionsApiUrl}/${excursionId}`, options)
-            .then(response => {
-                if (response.ok) { return response.json() }
-                return Promise.resolve()
-            })
-            .catch(err => console.error('błąd dodawania wycieczki', err))
     }
 
-    updateExcursion(excursionId, excursionData) {
-        const options = {
-            method: 'PUT',
-            body: JSON.stringify(excursionData),
-            headers: { 'Content-Type': 'application/json' },
+    // usuwa wycieczke wg ID
+    async deleteExcursion(id) {
+        try {
+            const response = await fetch(`${this.baseURL}/excursions/${id}`, {
+                method: 'DELETE',
+            })
+            
+            if (!response.ok) throw new Error('Problem z usunięciem wycieczki')
+            return true
+        } catch (err) {
+            console.error('Błąd ExcursionsAPI.deleteExcursion:', err);
+            throw err
         }
-
-        return fetch(`${this.excursionsApiUrl}/${excursionId}`, options)
-            .then(response => {
-                if (response.ok) { return response.json() }
-                return Promise.reject(new Error(`Wystapił błąd podczas aktualizowania wycieczki! Status: ${response.status}`))
-            })
-            .catch(err => console.error('błąd aktualizowania wycieczki', err))
-
     }
 
-    addOrder(orderData) {
-        
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(orderData),
-            headers: { 'Content-Type': 'application/json' },
+    // aktualizacja wycieczki juz istniejącej
+    async updateExcursion(id, excursionData) {
+        try {
+            const response = await fetch(`${this.baseURL}/excursions/${id}`, {
+                method: 'PUT', 
+                body: JSON.stringify(excursionData),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            
+            if (!response.ok) throw new Error('Problem z aktualizacją wycieczki')
+            return await response.json()
+        } catch (err) {
+            console.error('Błąd ExcursionsAPI.updateExcursion:', err);
+            throw err
         }
-
-        return fetch(this.ordersApiUrl, options)
-            .then(response => {
-                if (response.ok) { return response.json() }
-                    return Promise.reject(new Error(`Wystapił błąd podczas dodawania zamówienia! Status: ${response.status}`))
-            })
-            .catch(err => console.error('błąd dodawania zamówienia', err))
     }
 
+    // dodawanie nowego zamówienia 
+    async addOrder(orderData) {
+        try {
+            const response = await fetch(`${this.baseURL}/orders`, {
+                method: 'POST',
+                body: JSON.stringify(orderData),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            
+            if (!response.ok) throw new Error('Problem z dodaniem zamówienia')
+            return await response.json()
+        } catch (err) {
+            console.error('Błąd ExcursionsAPI.addOrder:', err);
+            throw err
+        }
+    }
 
 }
-
+    
 export default ExcursionsAPI;

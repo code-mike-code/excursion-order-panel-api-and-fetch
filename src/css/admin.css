@@ -23,7 +23,9 @@ ul {
     display: flex;
     flex-wrap: wrap;
 }
-
+.excursions__item--prototype {
+    display: none;
+}
 .excursions__item {
     border: 1px solid #bbb;
     border-radius: 5px;
