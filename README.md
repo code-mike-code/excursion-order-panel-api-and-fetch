@@ -20,16 +20,25 @@ This modular structure improves scalability, separation of concerns, and maintai
 Located at /src/index.html
 
 ## 🔑 Key Features
+
 • Trip selection with form-based quantity input
+
 • Real-time cart updates and price calculation
+
 • Customer form validation (name, surname, email)
+
 • Order submission via fetch() to local API (JSON Server)
+
 • UI reset after successful order
 
 ## 🧪 Tech Details
+
 • Input validation with native JS
+
 • UI built from hidden HTML prototypes (.*--prototype)
+
 • Order and trip data managed using structured JavaScript objects
+
 • API communication encapsulated in ExcursionsAPI.js
 
 &nbsp;
@@ -38,14 +47,21 @@ Located at /src/index.html
 Located at /src/admin.html
 
 ## ✏️ Functionality
+
 • Add new excursions (name, description, prices)
+
 • Edit or delete existing excursions
+
 • All changes persist through JSON Server and affect the client view
 
 ## 🔧 Backend API Endpoints
+
 • GET /excursions – fetch all trips
+
 • POST /excursions – add new trip
+
 • PATCH /excursions/:id – modify trip
+
 • DELETE /excursions/:id – delete trip
 
 &nbsp;
@@ -59,6 +75,7 @@ json-server --watch ./data/excursions.json
 Accessible at:
 
 • http://localhost:3000/excursions – for managing trips
+
 • http://localhost:3000/orders – for managing orders
 
 Make sure this is running in parallel with your Webpack dev server.
@@ -69,8 +86,11 @@ Make sure this is running in parallel with your Webpack dev server.
 Webpack handles:
 
 • ES6+ JavaScript bundling
+
 • Splitting client.js and admin.js into separate chunks
+
 • CSS loading via style-loader & css-loader
+
 • Live reloading during development
 
 To start the project:
@@ -105,10 +125,15 @@ Are you interested in **SCSS** and **JavaScript**? See my other project [Landing
 &nbsp;
 
 ## 📌 Lessons Learned
+
 • API abstraction with classes improves code clarity and reusability
+
 • Form validation ensures user input is reliable before hitting the backend
+
 • Fetch with error handling is essential for robust apps
+
 • Modular file separation and chunking improve performance and scalability
+
 • Source-controlled UI prototypes (using display: none) speed up templating
 
 &nbsp;
