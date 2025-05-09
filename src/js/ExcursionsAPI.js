@@ -3,7 +3,6 @@ class ExcursionsAPI {
         // URL do naszego APi
         this.baseURL = 'http://localhost:3000';
     }
-
     // pobiera liste wycieczek
     async getExcursions() {
         try {
@@ -17,7 +16,6 @@ class ExcursionsAPI {
             throw new Error(`Błąd pobierania wycieczek!`)
         }
     }
-
     // dodaje wycieczke do serwera
     async addExcursions(excursionData) {
         try {
@@ -33,7 +31,6 @@ class ExcursionsAPI {
             throw err
         }
     }
-
     // usuwa wycieczke wg ID
     async deleteExcursion(id) {
         try {
@@ -48,7 +45,6 @@ class ExcursionsAPI {
             throw err
         }
     }
-
     // aktualizacja wycieczki juz istniejącej
     async updateExcursion(id, excursionData) {
         try {
@@ -65,7 +61,6 @@ class ExcursionsAPI {
             throw err
         }
     }
-
     // dodawanie nowego zamówienia 
     async addOrder(orderData) {
         try {
@@ -82,7 +77,6 @@ class ExcursionsAPI {
             throw err
         }
     }
-
 }
     
 export default ExcursionsAPI;

@@ -4,10 +4,8 @@ import ExcursionsAPI from './ExcursionsAPI';
 
 console.log('admin');
 console.log('ExcursionsAPI:', ExcursionsAPI);
-console.log('Czy addExcursions istnieje?', 'addExcursions' in ExcursionsAPI.prototype);
 
 document.addEventListener('DOMContentLoaded', initAdmin)
-
 
 function initAdmin() {
     const api = new ExcursionsAPI()
@@ -17,7 +15,7 @@ function initAdmin() {
     
     loadExcursions()
     
-   // ładowanie wycieczek z servera
+   // ładowanie wycieczek z serwera
     async function loadExcursions() {
         try {
             const excursions = await api.getExcursions()
@@ -47,7 +45,6 @@ function initAdmin() {
             priceElements[0].textContent = excursion.adultPrice
             priceElements[1].textContent = excursion.childPrice
             
-    
             const updateBtn = newExcursion.querySelector('.excursions__field-input--update')
             const removeBtn = newExcursion.querySelector('.excursions__field-input--remove')
         
@@ -68,7 +65,6 @@ function initAdmin() {
                     }
                 }
             })
-            
             excursionsList.appendChild(newExcursion);
         })
     }
@@ -92,7 +88,7 @@ function initAdmin() {
             
             const labelEl = document.createElement('label')
             labelEl.className = 'excursions__field-name'
-            labelEl.textContent = `${label}: `
+            labelEl.textContent = `${label}: `;
             
             let input;
             if (type === 'textarea') {
@@ -103,7 +99,6 @@ function initAdmin() {
                 input.type = type
                 input.value = value
             }
-            
             input.name = name;
             labelEl.appendChild(input)
             field.appendChild(labelEl)
@@ -116,7 +111,6 @@ function initAdmin() {
         editContainer.appendChild(createField('adultPrice', 'Cena dorosłego', excursion.adultPrice, 'number'))
         editContainer.appendChild(createField('childPrice', 'Cena dziecka', excursion.childPrice, 'number'))
         
-    
         const buttonsContainer = document.createElement('div')
         buttonsContainer.className = 'excursions__field excursions__field--submit'
         
@@ -134,12 +128,10 @@ function initAdmin() {
         buttonsContainer.appendChild(cancelBtn)
         editContainer.appendChild(buttonsContainer)
         
-        
         form.appendChild(editContainer)
         
         saveBtn.addEventListener('click', async (e) => {
             e.preventDefault();
-            
             
             const updatedData = {
                 name: editContainer.querySelector('[name="name"]').value,
@@ -157,7 +149,6 @@ function initAdmin() {
                 alert('Nie udało się zaktualizować wycieczki');
             }
         })
-        
         cancelBtn.addEventListener('click', () => {
             loadExcursions()
         })

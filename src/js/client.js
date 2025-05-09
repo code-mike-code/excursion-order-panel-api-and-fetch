@@ -55,12 +55,11 @@ function initClient() {
             newExcursion.dataset.adultPrice = excursion.adultPrice
             newExcursion.dataset.childPrice = excursion.childPrice
 
-            
             excursionsList.appendChild(newExcursion)
         })
     }
     
-   // handler dodawania wycieczki do kosyka
+   // handler dodawania wycieczki do koszyka
     excursionsList.addEventListener('click', (e) => {
         if (e.target.classList.contains('excursions__field-input--submit')) {
             e.preventDefault()
@@ -189,7 +188,6 @@ function initClient() {
             
             await api.addOrder(orderData)
             
-
             cart = []
             updateSummary()
             nameInput.value = '';
