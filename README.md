@@ -7,8 +7,11 @@ This project is part of my learning journey at devmentor.pl and represents a mod
 
 ## 🧭 Project Overview
 The app is now split into two fully independent interfaces:
+
    • Client Panel – for end users to browse, select, and book excursions
+   
    • Admin Panel – for administrators to manage excursions in real time
+   
 This modular structure improves scalability, separation of concerns, and maintainability.
 
 &nbsp;
