@@ -4,8 +4,6 @@ See the live version of [Excursions order panel](https://code-mike-code.github.i
 
 This project is part of my learning journey at devmentor.pl and represents a modernized version of the travel ordering system. The core focus is integrating RESTful API communication using the native fetch() function and structuring the project to support both client and admin panels.
 
-The system dynamically generates trip cards from CSV data, calculates the total price, and ensures proper form validation before submission.
-
 
 ## 🧭 Project Overview
 The app is now split into two fully independent interfaces:
